@@ -18,28 +18,28 @@ use App\Http\Controllers\Cart;
 Route::get('/','HomeController@index');
 
 Route::post('/tim-kiem','HomeController@search');
-Route::post('/autocomplete-ajax','HomeController@autocomplete_ajax');
+Route::post('/autocomplete-ajax','CustomerController@autocomplete_ajax');
 
 Route::post('/quickview','ProductController@quickview');
-Route::get('/dang-xuat', 'HomeController@logout');
+Route::get('/dang-xuat', 'CustomerController@logout');
 
 //Register
-Route::post('/add-customer','HomeController@add_customer');
-Route::get('/dang-ky', 'HomeController@register');
+Route::get('/dang-ky', 'CustomerController@register');
+Route::post('/add-customer','CustomerController@add_customer');
 
 //Login
-Route::post('/login-customer','HomeController@login_customer');
-Route::get('/dang-nhap', 'HomeController@login');
+Route::get('/dang-nhap', 'CustomerController@login');
+Route::post('/login-customer','CustomerController@login_customer');
 
 // Change pass
-Route::get('/doi-mat-khau', 'HomeController@change_pass');
-Route::post('/confirm-password', 'HomeController@confirm_pass');
+Route::get('/doi-mat-khau', 'CustomerController@change_pass');
+Route::post('/confirm-password', 'CustomerController@confirm_pass');
 
 // Forgot pass
-Route::get('/quen-mat-khau', 'HomeController@forgot_pass');
-Route::post('/recover-pass','HomeController@recover_pass');
-Route::get('/cap-nhat-mat-khau', 'HomeController@update_new_pass');
-Route::post('/up-new-pass','HomeController@up_new_pass');
+Route::get('/quen-mat-khau', 'CustomerController@forgot_pass');
+Route::post('/recover-pass','CustomerController@recover_pass');
+Route::get('/cap-nhat-mat-khau', 'CustomerController@update_new_pass');
+Route::post('/up-new-pass','CustomerController@up_new_pass');
 
 //Product - home page
 Route::get('/san-pham', 'ProductController@show_product');
@@ -143,8 +143,8 @@ Route::post('/save-coupon','CouponController@save_coupon');
 Route::get('/delete-coupon/{coupon_id}','CouponController@delete_coupon');
 
 //Order
-Route::get('/all-order','CouponController@all_order');
-Route::get('/delete-order/{order_id}','CouponController@delete_order');
+Route::get('/all-order','OrderController@all_order');
+Route::get('/delete-order/{order_id}','OrderController@delete_order');
 
 //Customer
 Route::get('/all-customer','CustomerController@all_customer');

@@ -14,7 +14,7 @@ class Admin extends Model
     protected $primaryKey = 'admin_id';	//khóa chính
     protected $table = 'tbl_admin';		//tên bảng
 
-    public function roles(){
-        return $this->belongsToMany('App\Models\Roles');
-    }
+    // public function roles(){
+    //     return $this->belongsToMany('App\Models\Roles');
+    // }
 }

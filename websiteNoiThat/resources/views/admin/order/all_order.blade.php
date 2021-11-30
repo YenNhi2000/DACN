@@ -5,15 +5,15 @@
     <div class="bs-example widget-shadow" data-example-id="hoverable-table"> 
         <h4 class="text-center text-uppercase">Danh sách đơn đặt hàng</h4>
         
-            @if (session()->has('messageStaff'))
+            @if (session()->has('message'))
                 <div class="alert alert-success">
-                    {{ session()->get('messageStaff') }}
-                    {{ session()->put('messageStaff', null) }} 
+                    {{ session()->get('message') }}
+                    {{ session()->put('message', null) }} 
                 </div>
-            @elseif(session()->has('errorStaff'))
+            @elseif(session()->has('error'))
                 <div class="alert alert-danger">
-                    {{ session()->get('errorStaff') }}
-                    {{ session()->put('errorStaff', null) }}
+                    {{ session()->get('error') }}
+                    {{ session()->put('error', null) }}
                 </div>
             @endif
 
@@ -26,14 +26,14 @@
                     <option value="3">Export</option>
                 </select> -->
             </div>
-            <div class="col-sm-4">
-        </div>
-        <div class="col-sm-3">
-            <div class="input-group">
-                <input type="text" class="input-sm form-control keywords" placeholder="Tìm kiếm...">
-                <span class="input-group-btn">
-                    <button class="btn btn-search" type="button">Tìm</button>
-                </span>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <input type="text" class="input-sm form-control" id="myInput" onkeyup="search()" placeholder="Tìm kiếm...">
+                    <!-- <span class="input-group-btn">
+                        <button class="btn btn-sm btn-default" type="button">Tìm</button>
+                    </span> -->
+                </div>
             </div>
         </div>
         
@@ -45,21 +45,35 @@
                             <input type="checkbox"><i></i>
                         </label>
                     </th>
-                    <th>Họ tên NV</th>
-                    <th>SĐT</th>
-                    <th>Email</th>
+                    <th>Mã đơn hàng</th>
+                    <th>Ngày đặt hàng</th>
+                    <th>Tình trạng đặt hàng</th>
+                    <th style="width:30px;"></th>
                     <th style="width:30px;"></th>
                 </tr> 
             </thead>    
             <tbody class="staffList"> 
-                @foreach($all_staff as $key => $staff)
+                @foreach($all_order as $key => $order)
                 <tr>
                     <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                    <td>{{ $staff->staff_name }}</td>
-                    <td>{{ $staff->staff_phone }}</td>
-                    <td>{{ $staff->staff_email }}</td>
+                    <td>{{ $order->order_code }}</td>
+                    <td>{{ $order->created_at }}</td>
                     <td>
-                        <a href="{{URL::to('/delete-staff/'.$staff->staff_id)}}" class="active delete" onclick="return confirm('Bạn có muốn xóa nhân viên này không?')">
+                        @if($order->order_status==1)
+                            <span class="text text-success">Đơn hàng mới</span>
+                        @elseif($order->order_status==2)
+                            <span class="text text-primary">Đã xử lý - Đã giao hàng</span>
+                        @else
+                            <span class="text text-danger">Đơn hàng đã bị hủy</span>
+                        @endif
+                    </td>
+                    <td>
+                        <a href="{{URL::to('/edit-order/'.$order->order_id)}}" class="active view" ui-toggle-class="">
+                            <i class="fa fa-eye text-active" title="Xem"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{URL::to('/delete-order/'.$order->order_id)}}" class="active delete" onclick="return confirm('Bạn có muốn xóa nhân viên này không?')">
                             <i class="fa fa-times text-danger text" title="Xóa"></i>
                         </a>
                     </td>

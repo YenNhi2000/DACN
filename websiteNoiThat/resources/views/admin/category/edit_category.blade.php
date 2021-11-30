@@ -15,11 +15,11 @@
 
                     <div class="form-group">
                         <label>Tên danh mục</label>
-                        <input type="text" value="{{$edit_value->category_name}}" name="cat_name" id="slug" onkeyup="ChangeToSlug();" class="form-control">
+                        <input type="text" value="{{$edit_value->category_name}}" name="cat_name" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Slug</label>
-                        <input type="text" value="{{$edit_value->category_slug}}" name="cat_slug" id="convert_slug" class="form-control" >
+                        <input type="text" value="{{$edit_value->category_slug}}" name="cat_slug" class="form-control" >
                     </div>
                     <div class="form-group">
                         <label>Mô tả</label>

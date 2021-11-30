@@ -181,7 +181,7 @@ class CartController extends Controller
         $shipping->save();
 
         Session::put('shipping_id', $shipping->shipping_id);
-        return Redirect::to('/thanhToan');
+        return Redirect::to('/thanh-toan');
     }
 
     public function confirm_order(Request $request){
@@ -211,19 +211,18 @@ class CartController extends Controller
         $order->created_at = $today;
         $order->save();
 
-        echo $order;
-        // if(Session::get('cart')==true){
-        //     foreach(Session::get('cart') as $key => $cart){
-        //       $order_details = new OrderDetails;
-        //       $order_details->order_code = $checkout_code;
-        //       $order_details->product_id = $cart['product_id'];
-        //       $order_details->product_name = $cart['product_name'];
-        //       $order_details->product_price = $cart['product_price'];
-        //       $order_details->product_quantity = $cart['product_qty'];
-        //       $order_details->order_coupon =  $data['order_coupon'];
-        //       $order_details->save();
-        //     }
-        // }
+        if(Session::get('cart')==true){
+            foreach(Session::get('cart') as $key => $cart){
+              $order_details = new OrderDetails;
+              $order_details->order_code = $checkout_code;
+              $order_details->product_id = $cart['product_id'];
+              $order_details->product_name = $cart['product_name'];
+              $order_details->product_price = $cart['product_price'];
+              $order_details->product_quantity = $cart['product_qty'];
+              $order_details->order_coupon =  $data['order_coupon'];
+              $order_details->save();
+            }
+        }
 
         //send mail confirm
         // $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y H:i:s');
@@ -276,9 +275,9 @@ class CartController extends Controller
         //     $message->from($data['email'],$title_mail);//send from this mail
         // });
         
-        // Session::forget('coupon');
+        Session::forget('coupon');
         // Session::forget('fee');
-        // Session::forget('cart');
+        Session::forget('cart');
     }
 // End Payment
 }

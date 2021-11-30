@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Coupon;
 use Illuminate\Support\Facades\Redirect;
-session_start();    
+session_start();
 
 class CouponController extends Controller
 {

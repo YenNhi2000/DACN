@@ -827,9 +827,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						data: {shipping_id:shipping_id, order_coupon:order_coupon, order_total:order_total, 
 							payment_method:payment_method, _token:_token}, 
 						success:function(data){
-							alert('Đặt hàng thành công');
-							// $('.text').html(data);
-						// 	swal("Đơn hàng", "Đơn hàng của bạn đã được gửi thành công", "success");
+							swal("Đơn hàng", "Đơn hàng của bạn đã được gửi thành công", "success");
 						}
 					});
 				}
